@@ -53,10 +53,10 @@ local ThemeColor = {
 	}),
 	NavBarTrue = Color3.fromRGB(35, 35, 35),
 	Theme = ColorSequence.new({
-		ColorSequenceKeypoint.new(0.000, Color3.fromHex("#4794fd")),
-		ColorSequenceKeypoint.new(1.000, Color3.fromHex("#47fda0")),
+		ColorSequenceKeypoint.new(0.000, Color3.fromRGB(132, 65, 232)),
+		ColorSequenceKeypoint.new(1.000, Color3.fromRGB(132, 65, 185)),
 	}),
-	ThemeTrue = Color3.fromHex("#4794fd"),
+	ThemeTrue = Color3.fromRGB(132, 65, 232),
 }
 
 local Library = {
@@ -163,7 +163,7 @@ function Library:ResizeCanvas(Tab)
 	local NumChild = 0
 	local ChildOffset = 0
 
-	for i, v in pairs(Tab:GetChildren()) do
+	for i, v in (Tab:GetChildren()) do
 		if v:IsA("Frame") then
 			NumChild = NumChild + 1
 			ChildOffset = ChildOffset + v.Size.Y.Offset
@@ -203,7 +203,7 @@ function Library:ResizeSection(Section)
 	local NumChild = 0
 	local ChildOffset = 0
 
-	for i, v in pairs(SectionContainer:GetChildren()) do
+	for i, v in (SectionContainer:GetChildren()) do
 		if v:IsA("Frame") then
 			NumChild = NumChild + 1
 			ChildOffset = ChildOffset + v.Size.Y.Offset
@@ -229,7 +229,7 @@ end
 function Library:PlaceDefaults(defaults, options)
 	defaults = defaults or {}
 	options = options or {}
-	for option, value in next, options do
+	for option, value in options do
 		defaults[option] = value
 	end
 
@@ -367,7 +367,7 @@ function Library:SetTheme(Theme)
 		ThemeTrue = Theme.Theme,
 	}
 
-	for i, v in next, ThemeInstances.Main do
+	for i, v in ThemeInstances.Main do
 		pcall(function()
 			v.Color = ThemeColor.Main
 		end)
@@ -376,7 +376,7 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.MainTrue do
+	for i, v in ThemeInstances.MainTrue do
 		pcall(function()
 			v.Color = ThemeColor.MainTrue
 		end)
@@ -388,7 +388,7 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.Secondary do
+	for i, v in ThemeInstances.Secondary do
 		pcall(function()
 			v.Color = ThemeColor.Secondary
 		end)
@@ -397,7 +397,7 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.SecondaryTrue do
+	for i, v in ThemeInstances.SecondaryTrue do
 		pcall(function()
 			v.Color = ThemeColor.SecondaryTrue
 		end)
@@ -406,7 +406,7 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.Tertiary do
+	for i, v in ThemeInstances.Tertiary do
 		pcall(function()
 			v.Color = ThemeColor.Tertiary
 		end)
@@ -415,7 +415,7 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.TertiaryTrue do
+	for i, v in ThemeInstances.TertiaryTrue do
 		pcall(function()
 			v.Color = ThemeColor.TertiaryTrue
 		end)
@@ -424,19 +424,19 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.Text do
+	for i, v in ThemeInstances.Text do
 		pcall(function()
 			v.TextColor3 = ThemeColor.Text
 		end)
 	end
 
-	for i, v in next, ThemeInstances.PlaceholderText do
+	for i, v in ThemeInstances.PlaceholderText do
 		pcall(function()
 			v.PlaceholderColor3 = ThemeColor.PlaceholderText
 		end)
 	end
 
-	for i, v in next, ThemeInstances.Textbox do
+	for i, v in ThemeInstances.Textbox do
 		pcall(function()
 			v.Color = ThemeColor.Textbox
 		end)
@@ -448,7 +448,7 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.NavBar do
+	for i, v in ThemeInstances.NavBar do
 		pcall(function()
 			v.Color = ThemeColor.NavBar
 		end)
@@ -457,7 +457,7 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.Theme do
+	for i, v in ThemeInstances.Theme do
 		pcall(function()
 			v.Color = ThemeColor.Theme
 		end)
@@ -466,7 +466,7 @@ function Library:SetTheme(Theme)
 		end)
 	end
 
-	for i, v in next, ThemeInstances.ThemeTrue do
+	for i, v in ThemeInstances.ThemeTrue do
 		pcall(function()
 			if v:FindFirstChild("ToggleVal").Value == true then
 				v.BackgroundColor3 = ThemeColor.ThemeTrue
@@ -477,7 +477,7 @@ function Library:SetTheme(Theme)
 	task.spawn(function()
 		task.wait(0.2)
 
-		for i, v in next, ThemeInstances.Main do
+		for i, v in ThemeInstances.Main do
 			pcall(function()
 				v.Color = ThemeColor.Main
 			end)
@@ -486,7 +486,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.MainTrue do
+		for i, v in ThemeInstances.MainTrue do
 			pcall(function()
 				v.Color = ThemeColor.MainTrue
 			end)
@@ -498,7 +498,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Secondary do
+		for i, v in ThemeInstances.Secondary do
 			pcall(function()
 				v.Color = ThemeColor.Secondary
 			end)
@@ -507,7 +507,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.SecondaryTrue do
+		for i, v in ThemeInstances.SecondaryTrue do
 			pcall(function()
 				v.Color = ThemeColor.SecondaryTrue
 			end)
@@ -516,7 +516,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Tertiary do
+		for i, v in ThemeInstances.Tertiary do
 			pcall(function()
 				v.Color = ThemeColor.Tertiary
 			end)
@@ -525,7 +525,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.TertiaryTrue do
+		for i, v in ThemeInstances.TertiaryTrue do
 			pcall(function()
 				v.Color = ThemeColor.TertiaryTrue
 			end)
@@ -534,19 +534,19 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Text do
+		for i, v in ThemeInstances.Text do
 			pcall(function()
 				v.TextColor3 = ThemeColor.Text
 			end)
 		end
 
-		for i, v in next, ThemeInstances.PlaceholderText do
+		for i, v in ThemeInstances.PlaceholderText do
 			pcall(function()
 				v.PlaceholderColor3 = ThemeColor.PlaceholderText
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Textbox do
+		for i, v in ThemeInstances.Textbox do
 			pcall(function()
 				v.Color = ThemeColor.Textbox
 			end)
@@ -558,7 +558,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.NavBar do
+		for i, v in ThemeInstances.NavBar do
 			pcall(function()
 				v.Color = ThemeColor.NavBar
 			end)
@@ -567,7 +567,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Theme do
+		for i, v in ThemeInstances.Theme do
 			pcall(function()
 				v.Color = ThemeColor.Theme
 			end)
@@ -576,7 +576,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.ThemeTrue do
+		for i, v in ThemeInstances.ThemeTrue do
 			pcall(function()
 				if v:FindFirstChild("ToggleVal").Value == true then
 					v.BackgroundColor3 = ThemeColor.ThemeTrue
@@ -588,7 +588,7 @@ function Library:SetTheme(Theme)
 	task.spawn(function()
 		task.wait(1)
 
-		for i, v in next, ThemeInstances.Main do
+		for i, v in ThemeInstances.Main do
 			pcall(function()
 				v.Color = ThemeColor.Main
 			end)
@@ -597,7 +597,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.MainTrue do
+		for i, v in ThemeInstances.MainTrue do
 			pcall(function()
 				v.Color = ThemeColor.MainTrue
 			end)
@@ -609,7 +609,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Secondary do
+		for i, v in ThemeInstances.Secondary do
 			pcall(function()
 				v.Color = ThemeColor.Secondary
 			end)
@@ -618,7 +618,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.SecondaryTrue do
+		for i, v in ThemeInstances.SecondaryTrue do
 			pcall(function()
 				v.Color = ThemeColor.SecondaryTrue
 			end)
@@ -627,7 +627,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Tertiary do
+		for i, v in ThemeInstances.Tertiary do
 			pcall(function()
 				v.Color = ThemeColor.Tertiary
 			end)
@@ -636,7 +636,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.TertiaryTrue do
+		for i, v in ThemeInstances.TertiaryTrue do
 			pcall(function()
 				v.Color = ThemeColor.TertiaryTrue
 			end)
@@ -645,19 +645,19 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Text do
+		for i, v in ThemeInstances.Text do
 			pcall(function()
 				v.TextColor3 = ThemeColor.Text
 			end)
 		end
 
-		for i, v in next, ThemeInstances.PlaceholderText do
+		for i, v in ThemeInstances.PlaceholderText do
 			pcall(function()
 				v.PlaceholderColor3 = ThemeColor.PlaceholderText
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Textbox do
+		for i, v in ThemeInstances.Textbox do
 			pcall(function()
 				v.Color = ThemeColor.Textbox
 			end)
@@ -669,7 +669,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.NavBar do
+		for i, v in ThemeInstances.NavBar do
 			pcall(function()
 				v.Color = ThemeColor.NavBar
 			end)
@@ -678,7 +678,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Theme do
+		for i, v in ThemeInstances.Theme do
 			pcall(function()
 				v.Color = ThemeColor.Theme
 			end)
@@ -687,7 +687,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.ThemeTrue do
+		for i, v in ThemeInstances.ThemeTrue do
 			pcall(function()
 				if v:FindFirstChild("ToggleVal").Value == true then
 					v.BackgroundColor3 = ThemeColor.ThemeTrue
@@ -699,7 +699,7 @@ function Library:SetTheme(Theme)
 	task.spawn(function()
 		task.wait(5)
 
-		for i, v in next, ThemeInstances.Main do
+		for i, v in ThemeInstances.Main do
 			pcall(function()
 				v.Color = ThemeColor.Main
 			end)
@@ -708,7 +708,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.MainTrue do
+		for i, v in ThemeInstances.MainTrue do
 			pcall(function()
 				v.Color = ThemeColor.MainTrue
 			end)
@@ -720,7 +720,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Secondary do
+		for i, v in ThemeInstances.Secondary do
 			pcall(function()
 				v.Color = ThemeColor.Secondary
 			end)
@@ -729,7 +729,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.SecondaryTrue do
+		for i, v in ThemeInstances.SecondaryTrue do
 			pcall(function()
 				v.Color = ThemeColor.SecondaryTrue
 			end)
@@ -738,7 +738,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Tertiary do
+		for i, v in ThemeInstances.Tertiary do
 			pcall(function()
 				v.Color = ThemeColor.Tertiary
 			end)
@@ -747,7 +747,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.TertiaryTrue do
+		for i, v in ThemeInstances.TertiaryTrue do
 			pcall(function()
 				v.Color = ThemeColor.TertiaryTrue
 			end)
@@ -756,19 +756,19 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Text do
+		for i, v in ThemeInstances.Text do
 			pcall(function()
 				v.TextColor3 = ThemeColor.Text
 			end)
 		end
 
-		for i, v in next, ThemeInstances.PlaceholderText do
+		for i, v in ThemeInstances.PlaceholderText do
 			pcall(function()
 				v.PlaceholderColor3 = ThemeColor.PlaceholderText
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Textbox do
+		for i, v in ThemeInstances.Textbox do
 			pcall(function()
 				v.Color = ThemeColor.Textbox
 			end)
@@ -780,7 +780,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.NavBar do
+		for i, v in ThemeInstances.NavBar do
 			pcall(function()
 				v.Color = ThemeColor.NavBar
 			end)
@@ -789,7 +789,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.Theme do
+		for i, v in ThemeInstances.Theme do
 			pcall(function()
 				v.Color = ThemeColor.Theme
 			end)
@@ -798,7 +798,7 @@ function Library:SetTheme(Theme)
 			end)
 		end
 
-		for i, v in next, ThemeInstances.ThemeTrue do
+		for i, v in ThemeInstances.ThemeTrue do
 			pcall(function()
 				if v:FindFirstChild("ToggleVal").Value == true then
 					v.BackgroundColor3 = ThemeColor.ThemeTrue
@@ -1015,7 +1015,7 @@ function Library:Create(options)
 		local NumChild = 0
 		local ChildOffset = 0
 
-		for i, v in pairs(Gui["6"]:GetChildren()) do
+		for i, v in (Gui["6"]:GetChildren()) do
 			if v:IsA("TextButton") then
 				NumChild = NumChild + 1
 				ChildOffset = ChildOffset + v.Size.X.Offset
@@ -1726,7 +1726,7 @@ function Library:Create(options)
 					task.wait(1)
 					KeySystem["a0"]:Destroy()
 
-					for i, v in next, KeyConnectionBin do
+					for i, v in KeyConnectionBin do
 						v:Disconnect()
 					end
 				end)
@@ -2136,7 +2136,7 @@ function Library:Create(options)
 
 						local TotalConnection = #Button.Connections
 						local Disconnected = 0
-						for i, v in next, Button.Connections do
+						for i, v in Button.Connections do
 							pcall(function()
 								v:Disconnect()
 								Disconnected = Disconnected + 1
@@ -2347,7 +2347,7 @@ function Library:Create(options)
 
 						local TotalConnection = #Toggle.Connections
 						local Disconnected = 0
-						for i, v in next, Toggle.Connections do
+						for i, v in Toggle.Connections do
 							pcall(function()
 								v:Disconnect()
 								Disconnected = Disconnected + 1
@@ -2649,7 +2649,7 @@ function Library:Create(options)
 								Library.Sliding = true
 								MouseDown = true
 
-								while RunService.RenderStepped:wait() and MouseDown do
+								while RunService.RenderStepped:Wait() and MouseDown do
 									local percentage = math.clamp(
 										(Mouse.X - Slider["3a"].AbsolutePosition.X) / Slider["3a"].AbsoluteSize.X,
 										0,
@@ -2713,7 +2713,7 @@ function Library:Create(options)
 
 						local TotalConnection = #Slider.Connections
 						local Disconnected = 0
-						for i, v in next, Slider.Connections do
+						for i, v in Slider.Connections do
 							pcall(function()
 								v:Disconnect()
 								Disconnected = Disconnected + 1
@@ -2921,7 +2921,7 @@ function Library:Create(options)
 
 							local TotalConnection = #Keybind.Connections
 							local Disconnected = 0
-							for i, v in next, Keybind.Connections do
+							for i, v in Keybind.Connections do
 								pcall(function()
 									v:Disconnect()
 									Disconnected = Disconnected + 1
@@ -3149,7 +3149,7 @@ function Library:Create(options)
 
 						local TotalConnection = #Textbox.Connections
 						local Disconnected = 0
-						for i, v in next, Textbox.Connections do
+						for i, v in Textbox.Connections do
 							pcall(function()
 								v:Disconnect()
 								Disconnected = Disconnected + 1
@@ -3436,7 +3436,7 @@ function Library:Create(options)
 
 						local TotalConnection = #BigTextbox.Connections
 						local Disconnected = 0
-						for i, v in next, BigTextbox.Connections do
+						for i, v in BigTextbox.Connections do
 							pcall(function()
 								v:Disconnect()
 								Disconnected = Disconnected + 1
@@ -3681,13 +3681,13 @@ function Library:Create(options)
 						Dropdown.Connections,
 						Dropdown["5e"]:GetPropertyChangedSignal("Text"):Connect(function()
 							if Dropdown["5e"].Text == "" then
-								for i, v in pairs(Dropdown["4b"]:GetChildren()) do
+								for i, v in (Dropdown["4b"]:GetChildren()) do
 									if v:IsA("Frame") then
 										v.Visible = true
 									end
 								end
 							else
-								for i, v in pairs(Dropdown["4b"]:GetChildren()) do
+								for i, v in (Dropdown["4b"]:GetChildren()) do
 									if v:IsA("Frame") then
 										if string.find(string.lower(v.Name), string.lower(Dropdown["5e"].Text)) then
 											v.Visible = true
@@ -3740,7 +3740,7 @@ function Library:Create(options)
 										do
 											local NumChild = 0
 
-											for i, v in pairs(Dropdown["4b"]:GetChildren()) do
+											for i, v in (Dropdown["4b"]:GetChildren()) do
 												if v:IsA("Frame") and v.Visible == true then
 													NumChild = NumChild + 1
 												end
@@ -3768,7 +3768,7 @@ function Library:Create(options)
 						if Dropdown.ContainerOpened then
 							local NumChild = 0
 
-							for i, v in pairs(Dropdown["4b"]:GetChildren()) do
+							for i, v in (Dropdown["4b"]:GetChildren()) do
 								if v:IsA("Frame") and v.Visible == true then
 									NumChild = NumChild + 1
 								end
@@ -3824,13 +3824,6 @@ function Library:Create(options)
 							-- StarterGui.Vision Lib v2.GuiFrame.MainFrame.Container.SectionFrame.SectionContainer.Dropdown.Container.Option 1.UIStroke
 							DropdownOption["50"] = Instance.new("UIStroke", DropdownOption["4d"])
 							DropdownOption["50"]["Color"] = ThemeColor.MainTrue
-
-							if typeof(value) == "Instance" then
-
-								DropdownOption["value"] = Instance.new("ObjectValue", DropdownOption["4d"])
-								DropdownOption["value"].Value = value
-
-							end
 
 							ThemeInstances["MainTrue"][#ThemeInstances["MainTrue"] + 1] = DropdownOption["50"]
 						end
@@ -3933,11 +3926,14 @@ function Library:Create(options)
 
 						Dropdown:ResizeContainer()
 					end
-
+					
 					function Dropdown:RemoveItem(value)
-						for i, v in pairs(Dropdown["4b"]:GetChildren()) do
-							if v:IsA("Frame") and v:FindFirstChildWhichIsA("ObjectValue") and v:FindFirstChildWhichIsA("ObjectValue").Value == value then
-								v:Destroy()
+						for i, v in (Dropdown["4b"]:GetChildren()) do
+							if v:IsA("Frame") then
+								local Value: ObjectValue? = v:FindFirstChildWhichIsA("ObjectValue")
+								if Value and Value.Value and Value.Value == value then
+									v:Destroy()
+								end
 							end
 						end
 
@@ -3945,11 +3941,13 @@ function Library:Create(options)
 					end
 
 					function Dropdown:Clear()
-						for i, v in pairs(Dropdown["4b"]:GetChildren()) do
+						for i, v in (Dropdown["4b"]:GetChildren()) do
 							if v:IsA("Frame") then
 								v:Destroy()
 							end
 						end
+
+						local FrameYOffset = 34 + 4
 
 						Dropdown:ResizeContainer()
 					end
@@ -3961,14 +3959,14 @@ function Library:Create(options)
 						}, options or {})
 
 						if options.Replace then
-							for i, v in pairs(Dropdown["4b"]:GetChildren()) do
+							for i, v in (Dropdown["4b"]:GetChildren()) do
 								if v:IsA("Frame") then
 									v:Destroy()
 								end
 							end
 						end
 
-						for i, v in pairs(options.Items) do
+						for i, v in (options.Items) do
 							Dropdown:AddItem(v)
 						end
 					end
@@ -3976,7 +3974,7 @@ function Library:Create(options)
 
 				do
 					task.spawn(function()
-						for i, v in pairs(options.Items) do
+						for i, v in (options.Items) do
 							Dropdown:AddItem(v)
 						end
 					end)
@@ -3987,7 +3985,7 @@ function Library:Create(options)
 
 					local TotalConnection = #Dropdown.Connections
 					local Disconnected = 0
-					for i, v in next, Dropdown.Connections do
+					for i, v in Dropdown.Connections do
 						pcall(function()
 							v:Disconnect()
 							Disconnected = Disconnected + 1
@@ -4097,7 +4095,7 @@ function Library:Create(options)
 
 						local TotalConnection = #Label.Connections
 						local Disconnected = 0
-						for i, v in next, Label.Connections do
+						for i, v in Label.Connections do
 							pcall(function()
 								v:Disconnect()
 								Disconnected = Disconnected + 1
@@ -4559,7 +4557,7 @@ function Library:Create(options)
 
 						local TotalConnection = #Colorpicker.Connections
 						local Disconnected = 0
-						for i, v in next, Colorpicker.Connections do
+						for i, v in Colorpicker.Connections do
 							pcall(function()
 								v:Disconnect()
 								Disconnected = Disconnected + 1
@@ -5216,7 +5214,7 @@ function Library:Create(options)
 							Vector2.new(Mouse.X - Gui["2"].AbsolutePosition.X, Mouse.Y - Gui["2"].AbsolutePosition.Y)
 
 						while
-							RunService.RenderStepped:wait()
+							RunService.RenderStepped:Wait()
 							and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
 						do
 							if not Library.Sliding then
@@ -5260,7 +5258,7 @@ function Library:Create(options)
 	-- Nav Clock
 	do
 		task.spawn(function()
-			while wait() do
+			while task.wait() do
 				local t = tick()
 				local sec = math.floor(t % 60)
 				local min = math.floor((t / 60) % 60)
@@ -5853,7 +5851,7 @@ function Library:Popup(options)
 	end
 
 	do
-		for i, text in next, options.Options do
+		for i, text in options.Options do
 			do
 				local PromptOption = {}
 				-- StarterGui.Vision Lib v2.Prompt.Prompt.Controls.B1
@@ -5955,7 +5953,7 @@ function Library:Destroy()
 	local TotalConnections = #ConnectionBin
 	local TotalControls = #ControlsConnectionBin
 
-	for i, v in next, ConnectionBin do
+	for i, v in ConnectionBin do
 		pcall(function()
 			v:Disconnect()
 
@@ -5963,8 +5961,8 @@ function Library:Destroy()
 		end)
 	end
 
-	for i, controls in next, ControlsConnectionBin do
-		for i, event in next, controls do
+	for i, controls in ControlsConnectionBin do
+		for i, event in controls do
 			TotalControlConnections = TotalControlConnections + 1
 
 			pcall(function()
