@@ -360,8 +360,8 @@ local UpdatingFunctions = {
 					continue
 				end
 
-				SetRenderProperty(TopTextObject, Index, Value)
-				SetRenderProperty(BottomTextObject, Index, Value)
+				pcall(SetRenderProperty, TopTextObject, Index, Value)
+				pcall(SetRenderProperty, BottomTextObject, Index, Value)
 			end
 
 			local GetColor = CoreFunctions.GetColor
@@ -421,7 +421,7 @@ local UpdatingFunctions = {
 					continue
 				end
 
-				SetRenderProperty(TracerObject, Index, Value)
+				pcall(SetRenderProperty, TracerObject, Index, Value)
 			end
 
 			SetRenderProperty(TracerObject, "Color", CoreFunctions.GetColor(Entry.Object, Settings.RainbowColor and CoreFunctions.GetRainbowColor() or Settings.Color))
@@ -482,10 +482,10 @@ local UpdatingFunctions = {
 					continue
 				end
 
-				SetRenderProperty(CircleObject, Index, Value)
+				pcall(SetRenderProperty, CircleObject, Index, Value)
 
 				if Settings.Outline then
-					SetRenderProperty(CircleOutlineObject, Index, Value)
+					pcall(SetRenderProperty, CircleOutlineObject, Index, Value)
 				end
 			end
 
@@ -526,8 +526,8 @@ local UpdatingFunctions = {
 				if not pcall(GetRenderProperty, BoxObject, Index) then
 					continue
 				end
-
-				SetRenderProperty(BoxObject, Index, Value)
+				
+				pcall(SetRenderProperty, BoxObject, Index, Value)
 			end
 
 			SetRenderProperty(BoxObject, "Color", CoreFunctions.GetColor(Entry.Object, Settings.RainbowColor and CoreFunctions.GetRainbowColor() or Settings.Color))
@@ -562,7 +562,7 @@ local UpdatingFunctions = {
 					continue
 				end
 
-				SetRenderProperty(MainObject, Index, Value)
+				pcall(SetRenderProperty, MainObject, Index, Value)
 			end
 
 			Humanoid = Humanoid or FindFirstChildOfClass(__index(Entry.Object, "Character"), "Humanoid")
