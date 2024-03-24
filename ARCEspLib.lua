@@ -526,7 +526,7 @@ local UpdatingFunctions = {
 				if not pcall(GetRenderProperty, BoxObject, Index) then
 					continue
 				end
-				
+
 				pcall(SetRenderProperty, BoxObject, Index, Value)
 			end
 
@@ -1424,7 +1424,7 @@ local UtilityFunctions = {
 
 				Recursive(Value.Visuals, function(_, _Value)
 					if type(_Value) == "table" and _Value then
-						pcall(_Value.Remove, _Value)
+						pcall(_Value.Destroy, _Value)
 					end
 				end)
 
