@@ -1419,11 +1419,13 @@ local UtilityFunctions = {
 		for _, Value in next, Environment.UtilityAssets.WrappedObjects do
 			if Value.Object == Object or Value.Hash == Hash then
 				for _, _Value in next, Value.Connections do
+					warn("Disconnect: "..tostring(_Value))
 					pcall(Disconnect, _Value)
 				end
 
 				Recursive(Value.Visuals, function(_, _Value)
 					if type(_Value) == "table" and _Value then
+						warn("Destroy: "..tostring(_Value))
 						pcall(_Value.Destroy, _Value)
 					end
 				end)
