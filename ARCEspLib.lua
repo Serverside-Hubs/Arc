@@ -104,7 +104,7 @@ getgenv().ExunysDeveloperESP = {
 	},
 
 	Settings = {
-		Enabled = true,
+		Visible = true,
 		PartsOnly = false,
 		TeamCheck = false,
 		AliveCheck = true,
@@ -115,7 +115,7 @@ getgenv().ExunysDeveloperESP = {
 
 	Properties = {
 		ESP = {
-			Enabled = true,
+			Visible = true,
 			RainbowColor = false,
 			RainbowOutlineColor = false,
 			Offset = 10,
@@ -136,7 +136,7 @@ getgenv().ExunysDeveloperESP = {
 		},
 
 		Tracer = {
-			Enabled = true,
+			Visible = true,
 			RainbowColor = false,
 			RainbowOutlineColor = false,
 			Position = 1, -- 1 = Bottom; 2 = Center; 3 = Mouse
@@ -150,7 +150,7 @@ getgenv().ExunysDeveloperESP = {
 		},
 
 		HeadDot = {
-			Enabled = true,
+			Visible = true,
 			RainbowColor = false,
 			RainbowOutlineColor = false,
 
@@ -165,7 +165,7 @@ getgenv().ExunysDeveloperESP = {
 		},
 
 		Box = {
-			Enabled = true,
+			Visible = true,
 			RainbowColor = false,
 			RainbowOutlineColor = false,
 
@@ -179,7 +179,7 @@ getgenv().ExunysDeveloperESP = {
 		},
 
 		HealthBar = {
-			Enabled = true,
+			Visible = true,
 			RainbowOutlineColor = false,
 			Offset = 4,
 			Blue = 100,
@@ -193,7 +193,7 @@ getgenv().ExunysDeveloperESP = {
 		},
 
 		Chams = {
-			Enabled = false, -- Keep disabled, broken, WIP...
+			Visible = false, -- Keep disabled, broken, WIP...
 			RainbowColor = false,
 
 			Color = Color3fromRGB(255, 255, 255),
@@ -203,7 +203,7 @@ getgenv().ExunysDeveloperESP = {
 		},
 
 		Crosshair = {
-			Enabled = true,
+			Visible = true,
 			RainbowColor = false,
 			RainbowOutlineColor = false,
 			TStyled = false,
@@ -230,7 +230,7 @@ getgenv().ExunysDeveloperESP = {
 			Outline = true,
 
 			CenterDot = {
-				Enabled = true,
+				Visible = true,
 				RainbowColor = false,
 				RainbowOutlineColor = false,
 
@@ -626,7 +626,7 @@ local UpdatingFunctions = {
 			return
 		end
 
-		local ChamsEnabled, ESPEnabled = Settings.Enabled, Environment.Settings.Enabled
+		local ChamsVisible, ESPVisible = Settings.Visible, Environment.Settings.Visible
 		local IsReady = Entry.Checks.Ready
 
 		local ConvertVector = CoreFunctions.ConvertVector
@@ -635,7 +635,7 @@ local UpdatingFunctions = {
 			return __index(Part, "CFrame"), __index(Part, "Size") / 2
 		end))
 
-		if not (ChamsEnabled and ESPEnabled and IsReady and _CFrame and PartSize and select(2, WorldToViewportPoint(_CFrame.Position))) then
+		if not (ChamsVisible and ESPVisible and IsReady and _CFrame and PartSize and select(2, WorldToViewportPoint(_CFrame.Position))) then
 			for Index = 1, 6 do
 				SetRenderProperty(Cham["Quad"..Index], "Visible", false)
 			end
@@ -653,8 +653,8 @@ local UpdatingFunctions = {
 		}
 
 		for Index, Value in next, Settings do
-			if Index == "Enabled" then
-				Index, Value = "Visible", ChamsEnabled and ESPEnabled and IsReady
+			if Index == "Visible" then
+				Index, Value = "Visible", ChamsVisible and ESPVisible and IsReady
 			elseif Index == "Color" then
 				Value = CoreFunctions.GetColor(Entry.Object, Settings.RainbowColor and CoreFunctions.GetRainbowColor() or Settings.Color)
 			end
@@ -765,7 +765,7 @@ local CreatingFunctions = {
 
 		Entry.Connections.ESP = Connect(__index(RunService, Environment.DeveloperSettings.UpdateMode), function()
 			local Functionable, Ready = pcall(function()
-				return Environment.Settings.Enabled and Settings.Enabled and Entry.Checks.Ready
+				return Environment.Settings.Visible and Settings.Visible and Entry.Checks.Ready
 			end)
 
 			if not Functionable then
@@ -808,7 +808,7 @@ local CreatingFunctions = {
 
 		Entry.Connections.Tracer = Connect(__index(RunService, Environment.DeveloperSettings.UpdateMode), function()
 			local Functionable, Ready = pcall(function()
-				return Environment.Settings.Enabled and Settings.Enabled and Entry.Checks.Ready
+				return Environment.Settings.Visible and Settings.Visible and Entry.Checks.Ready
 			end)
 
 			if not Functionable then
@@ -857,7 +857,7 @@ local CreatingFunctions = {
 
 		Entry.Connections.HeadDot = Connect(__index(RunService, Environment.DeveloperSettings.UpdateMode), function()
 			local Functionable, Ready = pcall(function()
-				return Environment.Settings.Enabled and Settings.Enabled and Entry.Checks.Ready
+				return Environment.Settings.Visible and Settings.Visible and Entry.Checks.Ready
 			end)
 
 			if not Functionable then
@@ -900,7 +900,7 @@ local CreatingFunctions = {
 
 		Entry.Connections.Box = Connect(__index(RunService, Environment.DeveloperSettings.UpdateMode), function()
 			local Functionable, Ready = pcall(function()
-				return Environment.Settings.Enabled and Settings.Enabled and Entry.Checks.Ready
+				return Environment.Settings.Visible and Settings.Visible and Entry.Checks.Ready
 			end)
 
 			if not Functionable then
@@ -949,7 +949,7 @@ local CreatingFunctions = {
 
 		Entry.Connections.HealthBar = Connect(__index(RunService, Environment.DeveloperSettings.UpdateMode), function()
 			local Functionable, Ready = pcall(function()
-				return Environment.Settings.Enabled and Settings.Enabled and Entry.Checks.Ready
+				return Environment.Settings.Visible and Settings.Visible and Entry.Checks.Ready
 			end)
 
 			if not Functionable then
@@ -1066,7 +1066,7 @@ local CreatingFunctions = {
 		local Axis, Rotation, GapSize = GetMouseLocation(), Settings.Rotation, Settings.GapSize
 
 		ServiceConnections.UpdateCrosshairProperties, ServiceConnections.UpdateCrosshair = Connect(__index(RunService, DeveloperSettings.UpdateMode), function()
-			if Settings.Enabled and Environment.Settings.Enabled then
+			if Settings.Visible and Environment.Settings.Visible then
 				if Settings.Position == 1 then
 					Axis = GetMouseLocation()
 				elseif Settings.Position == 2 then
@@ -1099,7 +1099,7 @@ local CreatingFunctions = {
 				GapSize = mathclamp(GapSize, 0, 24)
 			end
 		end), Connect(__index(RunService, DeveloperSettings.UpdateMode), function()
-			if Environment.Settings.Enabled then
+			if Environment.Settings.Visible then
 				local AxisX, AxisY, Size = Axis.X, Axis.Y, Settings.Size
 
 				for ObjectName, RenderObject in next, RenderObjects do
@@ -1124,28 +1124,28 @@ local CreatingFunctions = {
 
 				--// Left Line
 
-				SetRenderProperty(RenderObjects.LeftLine, "Visible", Settings.Enabled)
+				SetRenderProperty(RenderObjects.LeftLine, "Visible", Settings.Visible)
 
 				SetRenderProperty(RenderObjects.LeftLine, "From", Vector2new(AxisX - (mathcos(mathrad(Rotation)) * GapSize), AxisY - (mathsin(mathrad(Rotation)) * GapSize)))
 				SetRenderProperty(RenderObjects.LeftLine, "To", Vector2new(AxisX - (mathcos(mathrad(Rotation)) * (Size + GapSize)), AxisY - (mathsin(mathrad(Rotation)) * (Size + GapSize))))
 
 				--// Right Line
 
-				SetRenderProperty(RenderObjects.RightLine, "Visible", Settings.Enabled)
+				SetRenderProperty(RenderObjects.RightLine, "Visible", Settings.Visible)
 
 				SetRenderProperty(RenderObjects.RightLine, "From", Vector2new(AxisX + (mathcos(mathrad(Rotation)) * GapSize), AxisY + (mathsin(mathrad(Rotation)) * GapSize)))
 				SetRenderProperty(RenderObjects.RightLine, "To", Vector2new(AxisX + (mathcos(mathrad(Rotation)) * (Size + GapSize)), AxisY + (mathsin(mathrad(Rotation)) * (Size + GapSize))))
 
 				--// Top Line
 
-				SetRenderProperty(RenderObjects.TopLine, "Visible", Settings.Enabled and not Settings.TStyled)
+				SetRenderProperty(RenderObjects.TopLine, "Visible", Settings.Visible and not Settings.TStyled)
 
 				SetRenderProperty(RenderObjects.TopLine, "From", Vector2new(AxisX - (mathsin(mathrad(-Rotation)) * GapSize), AxisY - (mathcos(mathrad(-Rotation)) * GapSize)))
 				SetRenderProperty(RenderObjects.TopLine, "To", Vector2new(AxisX - (mathsin(mathrad(-Rotation)) * (Size + GapSize)), AxisY - (mathcos(mathrad(-Rotation)) * (Size + GapSize))))
 
 				--// Bottom Line
 
-				SetRenderProperty(RenderObjects.BottomLine, "Visible", Settings.Enabled)
+				SetRenderProperty(RenderObjects.BottomLine, "Visible", Settings.Visible)
 
 				SetRenderProperty(RenderObjects.BottomLine, "From", Vector2new(AxisX + (mathsin(mathrad(-Rotation)) * GapSize), AxisY + (mathcos(mathrad(-Rotation)) * GapSize)))
 				SetRenderProperty(RenderObjects.BottomLine, "To", Vector2new(AxisX + (mathsin(mathrad(-Rotation)) * (Size + GapSize)), AxisY + (mathcos(mathrad(-Rotation)) * (Size + GapSize))))
@@ -1191,7 +1191,7 @@ local CreatingFunctions = {
 				local CenterDot = RenderObjects.CenterDot
 				local CenterDotSettings = Settings.CenterDot
 
-				SetRenderProperty(CenterDot, "Visible", Settings.Enabled and CenterDotSettings.Enabled)
+				SetRenderProperty(CenterDot, "Visible", Settings.Visible and CenterDotSettings.Visible)
 
 				if GetRenderProperty(CenterDot, "Visible") then
 					for Index, Value in next, CenterDotSettings do
