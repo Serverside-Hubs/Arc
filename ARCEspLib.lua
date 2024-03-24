@@ -8,7 +8,7 @@
 --// Caching
 
 local game = game
-local assert, loadstring, select, next, type, typeof, pcall, xpcall, setmetatable, getmetatable, tick, warn = assert, loadstring, select, next, type, typeof, pcall, xpcall, setmetatable, getmetatable, tick, warn
+local assert, loadstring, select, type, typeof, pcall, xpcall, setmetatable, getmetatable, tick, warn = assert, loadstring, select, type, typeof, pcall, xpcall, setmetatable, getmetatable, tick, warn
 local mathfloor, mathabs, mathcos, mathsin, mathrad, mathdeg, mathmin, mathmax, mathclamp, mathrandom = math.floor, math.abs, math.cos, math.sin, math.rad, math.deg, math.min, math.max, math.clamp, math.random
 local stringformat, stringfind, stringchar = string.format, string.find, string.char
 local unpack = table.unpack
@@ -259,7 +259,7 @@ local Environment = getgenv().ExunysDeveloperESP
 --// Functions
 
 local function Recursive(Table, Callback)
-	for Index, Value in next, Table do
+	for Index, Value in Table do
 		Callback(Index, Value)
 
 		if type(Value) == "table" then
@@ -351,7 +351,7 @@ local UpdatingFunctions = {
 		SetRenderProperty(BottomTextObject, "Visible", OnScreen)
 
 		if GetRenderProperty(TopTextObject, "Visible") then
-			for Index, Value in next, Settings do
+			for Index, Value in Settings do
 				if stringfind(Index, "Color") or stringfind(Index, "Display") then
 					continue
 				end
@@ -412,7 +412,7 @@ local UpdatingFunctions = {
 		SetRenderProperty(TracerOutlineObject, "Visible", OnScreen and Settings.Outline)
 
 		if GetRenderProperty(TracerObject, "Visible") then
-			for Index, Value in next, Settings do
+			for Index, Value in Settings do
 				if Index == "Color" then
 					continue
 				end
@@ -473,7 +473,7 @@ local UpdatingFunctions = {
 		SetRenderProperty(CircleOutlineObject, "Visible", OnScreen and Settings.Outline)
 
 		if GetRenderProperty(CircleObject, "Visible") then
-			for Index, Value in next, Settings do
+			for Index, Value in Settings do
 				if stringfind(Index, "Color") then
 					continue
 				end
@@ -518,7 +518,7 @@ local UpdatingFunctions = {
 			SetRenderProperty(BoxObject, "Position", Position)
 			SetRenderProperty(BoxObject, "Size", Size)
 
-			for Index, Value in next, Settings do
+			for Index, Value in Settings do
 				if Index == "Color" then
 					continue
 				end
@@ -553,7 +553,7 @@ local UpdatingFunctions = {
 		SetRenderProperty(OutlineObject, "Visible", OnScreen and Settings.Outline)
 
 		if GetRenderProperty(MainObject, "Visible") then
-			for Index, Value in next, Settings do
+			for Index, Value in Settings do
 				if Index == "Color" then
 					continue
 				end
@@ -652,7 +652,7 @@ local UpdatingFunctions = {
 			Quad6Object = Cham.Quad6
 		}
 
-		for Index, Value in next, Settings do
+		for Index, Value in Settings do
 			if Index == "Visible" then
 				Index, Value = "Visible", ChamsVisible and ESPVisible and IsReady
 			elseif Index == "Color" then
@@ -663,7 +663,7 @@ local UpdatingFunctions = {
 				continue
 			end
 
-			for _, RenderObject in next, Quads do
+			for _, RenderObject in Quads do
 				SetRenderProperty(RenderObject, Index, Value)
 			end
 		end
@@ -1010,14 +1010,14 @@ local CreatingFunctions = {
 			return
 		end
 
-		for _, Value in next, ChamsEntry do
+		for _, Value in ChamsEntry do
 			for Index = 1, 6 do
 				Value["Quad"..Index] = Drawingnew("Quad")
 			end
 		end
 
 		Entry.Connections.Chams = Connect(__index(RunService, Environment.DeveloperSettings.UpdateMode), function()
-			for Index, Value in next, ChamsEntry do
+			for Index, Value in ChamsEntry do
 				local Character = Entry.IsAPlayer and __index(Object, "Character") or __index(Object, "Parent")
 				local Part = Character and IsDescendantOf(Character, Workspace) and WaitForChild(Character, Index, Inf)
 
@@ -1055,11 +1055,11 @@ local CreatingFunctions = {
 
 		local RenderObjects = {}
 
-		for Index, Value in next, CrosshairParts do
+		for Index, Value in CrosshairParts do
 			RenderObjects[Index] = Value
 		end
 
-		for Index, Value in next, RenderObjects do
+		for Index, Value in RenderObjects do
 			SetRenderProperty(Value, "ZIndex", stringfind(Index, "Outline") and 9 or 10)
 		end
 
@@ -1102,8 +1102,8 @@ local CreatingFunctions = {
 			if Environment.Settings.Visible then
 				local AxisX, AxisY, Size = Axis.X, Axis.Y, Settings.Size
 
-				for ObjectName, RenderObject in next, RenderObjects do
-					for Index, _ in next, {Color = true, Transparency = true, Thickness = true} do
+				for ObjectName, RenderObject in RenderObjects do
+					for Index, _ in {Color = true, Transparency = true, Thickness = true} do
 						local Value = Settings[Index]
 
 						if (Index == "Color" or Index == "Thickness") and (stringfind(ObjectName, "Outline") or stringfind(ObjectName, "CenterDot")) then
@@ -1194,7 +1194,7 @@ local CreatingFunctions = {
 				SetRenderProperty(CenterDot, "Visible", Settings.Visible and CenterDotSettings.Visible)
 
 				if GetRenderProperty(CenterDot, "Visible") then
-					for Index, Value in next, CenterDotSettings do
+					for Index, Value in CenterDotSettings do
 						if Index == "Color" then
 							Value = CenterDotSettings.RainbowColor and CoreFunctions.GetRainbowColor() or Value
 						end
@@ -1221,7 +1221,7 @@ local CreatingFunctions = {
 					end
 				end
 			else
-				for _, RenderObject in next, CrosshairParts do
+				for _, RenderObject in CrosshairParts do
 					SetRenderProperty(RenderObject, "Visible", false)
 				end
 			end
@@ -1313,7 +1313,7 @@ local UtilityFunctions = {
 	GetObjectEntry = function(Object, Hash)
 		Hash = type(Object) == "string" and Object or Hash
 
-		for _, Value in next, Environment.UtilityAssets.WrappedObjects do
+		for _, Value in Environment.UtilityAssets.WrappedObjects do
 			if Hash and Value.Hash == Hash or Value.Object == Object then
 				return Value
 			end
@@ -1334,7 +1334,7 @@ local UtilityFunctions = {
 		local DeveloperSettings = Environment.DeveloperSettings
 		local WrappedObjects = Environment.UtilityAssets.WrappedObjects
 
-		for _, Value in next, WrappedObjects do
+		for _, Value in WrappedObjects do
 			if Value.Object == Object then
 				return
 			end
@@ -1416,14 +1416,14 @@ local UtilityFunctions = {
 		Hash = type(Object) == "string" and Object
 		Object = type(Object) == "string" and nil
 
-		for _, Value in next, Environment.UtilityAssets.WrappedObjects do
+		for _, Value in Environment.UtilityAssets.WrappedObjects do
 			if Value.Object == Object or Value.Hash == Hash then
-				for _, _Value in next, Value.Connections do
+				for _, _Value in Value.Connections do
 					pcall(Disconnect, _Value)
 				end
 
 				Recursive(Value.Visuals, function(_, _Value)
-					if type(_Value) == "table" and _Value then
+					if _Value and isrenderobj(_Value) then
 						pcall(_Value.Destroy, _Value)
 					end
 				end)
@@ -1435,7 +1435,7 @@ local UtilityFunctions = {
 }
 
 local LoadESP = function()
-	for _, Value in next, GetPlayers() do
+	for _, Value in GetPlayers() do
 		if Value == LocalPlayer then
 			continue
 		end
@@ -1456,10 +1456,10 @@ local LoadESP = function()
 			return
 		end
 
-		for _, Value in next, GetPlayers() do
+		for _, Value in GetPlayers() do
 			local Player = nil
 
-			for _, _Value in next, Environment.UtilityAssets.WrappedObjects do
+			for _, _Value in Environment.UtilityAssets.WrappedObjects do
 				if not _Value.IsAPlayer then
 					continue
 				end
@@ -1479,13 +1479,13 @@ local LoadESP = function()
 		local WrappedObjects = Environment.UtilityAssets.WrappedObjects
 		local Hash = UtilityFunctions:WrapObject(Player)
 
-		for _, Entry in next, WrappedObjects do
+		for _, Entry in WrappedObjects do
 			if Entry.Hash ~= Hash then
 				continue
 			end
 
 			Entry.Connections[__index(Player, "Name").."CharacterAdded"] = Connect(__index(Player, "CharacterAdded"), function(Object)
-				for _, _Value in next, Environment.UtilityAssets.WrappedObjects do
+				for _, _Value in Environment.UtilityAssets.WrappedObjects do
 					if not _Value.Name == __index(Object, "Name") then
 						continue
 					end
@@ -1524,11 +1524,11 @@ Environment.UnwrapPlayers = function() -- (<void>) => <boolean> Success Status
 	local WrappedObjects = UtilityAssets.WrappedObjects
 	local ServiceConnections = UtilityAssets.ServiceConnections
 
-	for _, Entry in next, WrappedObjects do
+	for _, Entry in WrappedObjects do
 		pcall(UtilityFunctions.UnwrapObject, Entry.Hash)
 	end
 
-	for _, ConnectionIndex in next, {"PlayerRemoving", "PlayerAdded", "CharacterAdded"} do
+	for _, ConnectionIndex in {"PlayerRemoving", "PlayerAdded", "CharacterAdded"} do
 		pcall(Disconnect, ServiceConnections[ConnectionIndex])
 	end
 
@@ -1550,15 +1550,15 @@ Environment.Restart = function(self) -- METHOD | (<void>) => <void>
 
 	local Objects = {}
 
-	for _, Value in next, self.UtilityAssets.WrappedObjects do
+	for _, Value in self.UtilityAssets.WrappedObjects do
 		Objects[#Objects + 1] = {Value.Hash, Value.Object, Value.Name, Value.Allowed, Value.RenderDistance}
 	end
 
-	for _, Value in next, Objects do
+	for _, Value in Objects do
 		self.UnwrapObject(Value[1])
 	end
 
-	for _, Value in next, Objects do
+	for _, Value in Objects do
 		self.WrapObject(select(2, unpack(Value)))
 	end
 
@@ -1572,23 +1572,23 @@ Environment.Exit = function(self) -- METHOD | (<void>) => <void>
 	assert(self, "EXUNYS_ESP.Exit: Missing parameter #1 \"self\" <table>.")
 
 	if self:UnwrapAll() then
-		for _, Connection in next, self.UtilityAssets.ServiceConnections do
+		for _, Connection in self.UtilityAssets.ServiceConnections do
 			pcall(Disconnect, Connection)
 		end
 
-		for _, RenderObject in next, CrosshairParts do
+		for _, RenderObject in CrosshairParts do
 			pcall(RenderObject.Destroy, RenderObject)
 		end
 
-		for _, Table in next, {CoreFunctions, UpdatingFunctions, CreatingFunctions, UtilityFunctions} do
-			for FunctionName, _ in next, Table do
+		for _, Table in {CoreFunctions, UpdatingFunctions, CreatingFunctions, UtilityFunctions} do
+			for FunctionName, _ in Table do
 				Table[FunctionName] = nil
 			end
 
 			Table = nil
 		end
 
-		for Index, _ in next, Environment do
+		for Index, _ in Environment do
 			getgenv().ExunysDeveloperESP[Index] = nil
 		end
 
@@ -1616,7 +1616,7 @@ Environment.DestroyCrosshair = function() -- (<void>) => <void>
 	Disconnect(ServiceConnections.UpdateCrosshairProperties)
 	Disconnect(ServiceConnections.UpdateCrosshair)
 
-	for _, RenderObject in next, CrosshairParts do
+	for _, RenderObject in CrosshairParts do
 		pcall(RenderObject.Destroy, RenderObject)
 	end
 
@@ -1658,7 +1658,7 @@ Environment.LoadConfiguration = function(self) -- METHOD | (<void>) => <void>
 		pcall(function()
 			local Configuration, Data = ConfigLibrary:LoadConfig(Path), {}
 
-			for _, Index in next, {"DeveloperSettings", "Settings", "Properties"} do
+			for _, Index in {"DeveloperSettings", "Settings", "Properties"} do
 				Data[#Data + 1] = ConfigLibrary:CloneTable(Configuration[Index])
 			end
 
