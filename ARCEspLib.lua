@@ -76,7 +76,7 @@ do
 	local TemporaryDrawing = Drawingnew("Line")
 	GetRenderProperty = getrenderproperty
 	SetRenderProperty = setrenderproperty
-	TemporaryDrawing.Remove(TemporaryDrawing)
+	TemporaryDrawing.Destroy(TemporaryDrawing)
 
 	local TemporaryConnection = Connect(__index(game, "DescendantAdded"), function() end)
 	Disconnect = TemporaryConnection.Disconnect
@@ -769,8 +769,8 @@ local CreatingFunctions = {
 			end)
 
 			if not Functionable then
-				pcall(TopText.Remove, TopText)
-				pcall(BottomText.Remove, BottomText)
+				pcall(TopText.Destroy, TopText)
+				pcall(BottomText.Destroy, BottomText)
 
 				return Disconnect(Entry.Connections.ESP)
 			end
@@ -812,8 +812,8 @@ local CreatingFunctions = {
 			end)
 
 			if not Functionable then
-				pcall(Tracer.Remove, Tracer)
-				pcall(TracerOutline.Remove, TracerOutline)
+				pcall(Tracer.Destroy, Tracer)
+				pcall(TracerOutline.Destroy, TracerOutline)
 
 				return Disconnect(Entry.Connections.Tracer)
 			end
@@ -861,8 +861,8 @@ local CreatingFunctions = {
 			end)
 
 			if not Functionable then
-				pcall(Circle.Remove, Circle)
-				pcall(CircleOutline.Remove, CircleOutline)
+				pcall(Circle.Destroy, Circle)
+				pcall(CircleOutline.Destroy, CircleOutline)
 
 				return Disconnect(Entry.Connections.HeadDot)
 			end
@@ -904,8 +904,8 @@ local CreatingFunctions = {
 			end)
 
 			if not Functionable then
-				pcall(Box.Remove, Box)
-				pcall(BoxOutline.Remove, BoxOutline)
+				pcall(Box.Destroy, Box)
+				pcall(BoxOutline.Destroy, BoxOutline)
 
 				return Disconnect(Entry.Connections.Box)
 			end
@@ -953,8 +953,8 @@ local CreatingFunctions = {
 			end)
 
 			if not Functionable then
-				pcall(Main.Remove, Main)
-				pcall(Outline.Remove, Outline)
+				pcall(Main.Destroy, Main)
+				pcall(Outline.Destroy, Outline)
 
 				return Disconnect(Entry.Connections.HealthBar)
 			end
@@ -1419,13 +1419,11 @@ local UtilityFunctions = {
 		for _, Value in next, Environment.UtilityAssets.WrappedObjects do
 			if Value.Object == Object or Value.Hash == Hash then
 				for _, _Value in next, Value.Connections do
-					warn("Disconnect: "..tostring(_Value))
 					pcall(Disconnect, _Value)
 				end
 
 				Recursive(Value.Visuals, function(_, _Value)
 					if type(_Value) == "table" and _Value then
-						warn("Destroy: "..tostring(_Value))
 						pcall(_Value.Destroy, _Value)
 					end
 				end)
@@ -1541,7 +1539,7 @@ Environment.UnwrapAll = function(self) -- METHOD | (<void>) => <void>
 	assert(self, "EXUNYS_ESP.UnwrapAll: Missing parameter #1 \"self\" <table>.")
 
 	if self.UnwrapPlayers() and CrosshairParts.LeftLine then
-		self.RemoveCrosshair()
+		self.DestroyCrosshair()
 	end
 
 	return #self.UtilityAssets.WrappedObjects == 0 and not CrosshairParts.LeftLine
@@ -1565,7 +1563,7 @@ Environment.Restart = function(self) -- METHOD | (<void>) => <void>
 	end
 
 	if CrosshairParts.LeftLine then
-		self.RemoveCrosshair()
+		self.DestroyCrosshair()
 		self.RenderCrosshair()
 	end
 end
@@ -1579,7 +1577,7 @@ Environment.Exit = function(self) -- METHOD | (<void>) => <void>
 		end
 
 		for _, RenderObject in next, CrosshairParts do
-			pcall(RenderObject.Remove, RenderObject)
+			pcall(RenderObject.Destroy, RenderObject)
 		end
 
 		for _, Table in next, {CoreFunctions, UpdatingFunctions, CreatingFunctions, UtilityFunctions} do
@@ -1608,7 +1606,7 @@ Environment.UnwrapObject = UtilityFunctions.UnwrapObject -- (<Instance/string> O
 
 Environment.RenderCrosshair = CreatingFunctions.Crosshair -- (<void>) => <void>
 
-Environment.RemoveCrosshair = function() -- (<void>) => <void>
+Environment.DestroyCrosshair = function() -- (<void>) => <void>
 	if not CrosshairParts.LeftLine then
 		return
 	end
@@ -1619,7 +1617,7 @@ Environment.RemoveCrosshair = function() -- (<void>) => <void>
 	Disconnect(ServiceConnections.UpdateCrosshair)
 
 	for _, RenderObject in next, CrosshairParts do
-		pcall(RenderObject.Remove, RenderObject)
+		pcall(RenderObject.Destroy, RenderObject)
 	end
 
 	CrosshairParts = {}
