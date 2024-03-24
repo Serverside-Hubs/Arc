@@ -3825,6 +3825,11 @@ function Library:Create(options)
 							DropdownOption["50"] = Instance.new("UIStroke", DropdownOption["4d"])
 							DropdownOption["50"]["Color"] = ThemeColor.MainTrue
 
+							if typeof(value) == "Instance" then
+								DropdownOption["value"] = Instance.new("ObjectValue", DropdownOption["4d"])
+								DropdownOption["value"].Value = value
+							end
+
 							ThemeInstances["MainTrue"][#ThemeInstances["MainTrue"] + 1] = DropdownOption["50"]
 						end
 
