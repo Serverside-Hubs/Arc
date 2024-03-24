@@ -1419,7 +1419,7 @@ local UtilityFunctions = {
 		for _, Value in Environment.UtilityAssets.WrappedObjects do
 			if Value.Object == Object or Value.Hash == Hash then
 				for _, _Value in Value.Connections do
-					pcall(Disconnect, _Value)
+					pcall(_Value.Disconnect, _Value)
 				end
 
 				Recursive(Value.Visuals, function(_, _Value)
