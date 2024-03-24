@@ -258,7 +258,7 @@ local Environment = getgenv().ExunysDeveloperESP
 
 --// Functions
 
-local function Recursive(Table, Callback)
+local Recursive; Recursive = function(Table, Callback)
 	for Index, Value in Table do
 		Callback(Index, Value)
 
@@ -1419,7 +1419,7 @@ local UtilityFunctions = {
 		for _, Value in Environment.UtilityAssets.WrappedObjects do
 			if Value.Object == Object or Value.Hash == Hash then
 				for _, _Value in Value.Connections do
-					pcall(_Value.Disconnect, _Value)
+					pcall(Disconnect, _Value)
 				end
 
 				Recursive(Value.Visuals, function(_, _Value)
