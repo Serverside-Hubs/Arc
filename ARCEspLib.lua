@@ -637,19 +637,19 @@ local UpdatingFunctions = {
 
 		if not (ChamsEnabled and ESPEnabled and IsReady and _CFrame and PartSize and select(2, WorldToViewportPoint(_CFrame.Position))) then
 			for Index = 1, 6 do
-				SetRenderProperty(Cham["Quad"..Index].__OBJECT, "Visible", false)
+				SetRenderProperty(Cham["Quad"..Index], "Visible", false)
 			end
 
 			return
 		end
 
 		local Quads = {
-			Quad1Object = Cham.Quad1.__OBJECT,
-			Quad2Object = Cham.Quad2.__OBJECT,
-			Quad3Object = Cham.Quad3.__OBJECT,
-			Quad4Object = Cham.Quad4.__OBJECT,
-			Quad5Object = Cham.Quad5.__OBJECT,
-			Quad6Object = Cham.Quad6.__OBJECT
+			Quad1Object = Cham.Quad1,
+			Quad2Object = Cham.Quad2,
+			Quad3Object = Cham.Quad3,
+			Quad4Object = Cham.Quad4,
+			Quad5Object = Cham.Quad5,
+			Quad6Object = Cham.Quad6
 		}
 
 		for Index, Value in next, Settings do
@@ -749,13 +749,13 @@ local CreatingFunctions = {
 		local Settings = Environment.Properties.ESP
 
 		local TopText = Drawingnew("Text")
-		local TopTextObject = TopText.__OBJECT
+		local TopTextObject = TopText
 
 		SetRenderProperty(TopTextObject, "ZIndex", 4)
 		SetRenderProperty(TopTextObject, "Center", true)
 
 		local BottomText = Drawingnew("Text")
-		local BottomTextObject = BottomText.__OBJECT
+		local BottomTextObject = BottomText
 
 		SetRenderProperty(BottomTextObject, "ZIndex", 4)
 		SetRenderProperty(BottomTextObject, "Center", true)
@@ -794,12 +794,12 @@ local CreatingFunctions = {
 		local Settings = Environment.Properties.Tracer
 
 		local Tracer = Drawingnew("Line")
-		local TracerObject = Tracer.__OBJECT
+		local TracerObject = Tracer
 
 		SetRenderProperty(TracerObject, "ZIndex", -1)
 
 		local TracerOutline = Drawingnew("Line")
-		local TracerOutlineObject = TracerOutline.__OBJECT
+		local TracerOutlineObject = TracerOutline
 
 		SetRenderProperty(TracerObject, "ZIndex", 0)
 
@@ -843,12 +843,12 @@ local CreatingFunctions = {
 		local Settings = Environment.Properties.HeadDot
 
 		local Circle = Drawingnew("Circle")
-		local CircleObject = Circle.__OBJECT
+		local CircleObject = Circle
 
 		SetRenderProperty(CircleObject, "ZIndex", 2)
 
 		local CircleOutline = Drawingnew("Circle")
-		local CircleOutlineObject = CircleOutline.__OBJECT
+		local CircleOutlineObject = CircleOutline
 
 		SetRenderProperty(CircleOutlineObject, "ZIndex", 1)
 
@@ -886,12 +886,12 @@ local CreatingFunctions = {
 		local Settings = Environment.Properties.Box
 
 		local Box = Drawingnew("Square")
-		local BoxObject = Box.__OBJECT
+		local BoxObject = Box
 
 		SetRenderProperty(BoxObject, "ZIndex", 4)
 
 		local BoxOutline = Drawingnew("Square")
-		local BoxOutlineObject = BoxOutline.__OBJECT
+		local BoxOutlineObject = BoxOutline
 
 		SetRenderProperty(BoxOutlineObject, "ZIndex", 3)
 
@@ -935,12 +935,12 @@ local CreatingFunctions = {
 		local Settings = Environment.Properties.HealthBar
 
 		local Main = Drawingnew("Line")
-		local MainObject = Main.__OBJECT
+		local MainObject = Main
 
 		SetRenderProperty(MainObject, "ZIndex", 2)
 
 		local Outline = Drawingnew("Line")
-		local OutlineObject = Outline.__OBJECT
+		local OutlineObject = Outline
 
 		SetRenderProperty(OutlineObject, "ZIndex", 1)
 
@@ -1056,7 +1056,7 @@ local CreatingFunctions = {
 		local RenderObjects = {}
 
 		for Index, Value in next, CrosshairParts do
-			RenderObjects[Index] = Value.__OBJECT
+			RenderObjects[Index] = Value
 		end
 
 		for Index, Value in next, RenderObjects do
@@ -1222,7 +1222,7 @@ local CreatingFunctions = {
 				end
 			else
 				for _, RenderObject in next, CrosshairParts do
-					SetRenderProperty(RenderObject.__OBJECT, "Visible", false)
+					SetRenderProperty(RenderObject, "Visible", false)
 				end
 			end
 		end)
@@ -1423,7 +1423,7 @@ local UtilityFunctions = {
 				end
 
 				Recursive(Value.Visuals, function(_, _Value)
-					if type(_Value) == "table" and _Value.__OBJECT then
+					if type(_Value) == "table" and _Value then
 						pcall(_Value.Remove, _Value)
 					end
 				end)
