@@ -74,8 +74,8 @@ local Connect, Disconnect, GetRenderProperty, SetRenderProperty = __index(game, 
 
 do
 	local TemporaryDrawing = Drawingnew("Line")
-	GetRenderProperty = getupvalue(getmetatable(TemporaryDrawing).__index, 4)
-	SetRenderProperty = getupvalue(getmetatable(TemporaryDrawing).__newindex, 4)
+	GetRenderProperty = getrenderproperty
+	SetRenderProperty = setrenderproperty
 	TemporaryDrawing.Remove(TemporaryDrawing)
 
 	local TemporaryConnection = Connect(__index(game, "DescendantAdded"), function() end)
