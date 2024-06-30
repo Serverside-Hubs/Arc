@@ -1844,6 +1844,7 @@ function Library:Create(options)
 			Active = false,
 			Hover = false,
 			Index = TabIndex,
+			Color = options.Color or Color3.new(1,1,1)
 		}
 
 		TabIndex = TabIndex + 1
@@ -1924,6 +1925,7 @@ function Library:Create(options)
 			}, options or {})
 
 			local Section = {}
+			Section.Color = Tab.Color
 
 			-- Section and Container
 			do
@@ -2096,8 +2098,7 @@ function Library:Create(options)
 								})
 
 								Library:Tween(Button["79"], {
-									Length = 0.2,
-									Goal = { ImageColor3 = ThemeColor.ThemeTrue },
+									Goal = { ImageColor3 = self.Color },
 								})
 
 								-- Callback
@@ -2236,7 +2237,7 @@ function Library:Create(options)
 
 					-- StarterGui.Vision Lib v2.GuiFrame.MainFrame.Container.SectionFrame.SectionContainer.Toggle.Toggle.Indicator
 					Toggle["2a"] = Instance.new("TextLabel", Toggle["27"])
-					Toggle["2a"]["BackgroundColor3"] = Color3.fromRGB(177, 177, 177)
+					Toggle["2a"]["BackgroundColor3"] = self.Color
 					Toggle["2a"]["TextSize"] = 14
 					Toggle["2a"]["TextColor3"] = Color3.fromRGB(0, 0, 0)
 					Toggle["2a"]["Size"] = UDim2.new(0, 23, 0, 20)
@@ -2245,7 +2246,7 @@ function Library:Create(options)
 					Toggle["2a"]["Font"] = Enum.Font.SourceSans
 					Toggle["2a"]["Position"] = UDim2.new(0, 0, 0, -1)
 
-					ThemeInstances["ThemeTrue"][#ThemeInstances["ThemeTrue"] + 1] = Toggle["2a"]
+					----ThemeInstances["ThemeTrue"][#ThemeInstances["ThemeTrue"] + 1] = Toggle["2a"]
 
 					Toggle["29"] = Instance.new("BoolValue", Toggle["2a"])
 					Toggle["29"]["Name"] = [[ToggleVal]]
@@ -2384,7 +2385,7 @@ function Library:Create(options)
 
 								Library:Tween(Toggle["2a"], {
 									Length = 0.2,
-									Goal = { BackgroundColor3 = ThemeColor.ThemeTrue },
+									Goal = { BackgroundColor3 = Section.Color },
 								})
 							end)
 						else
@@ -2518,9 +2519,9 @@ function Library:Create(options)
 					Slider["3e"] = Instance.new("UIGradient", Slider["3c"])
 					Slider["3e"]["Name"] = [[ThemeColorGradient]]
 					Slider["3e"]["Rotation"] = 90
-					Slider["3e"]["Color"] = ThemeColor.Theme
+					Slider["3e"]["Color"] = Library:CalGradient(self.Color, 47)
 
-					ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Slider["3e"]
+					----ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Slider["3e"]
 
 					-- StarterGui.Vision Lib v2.GuiFrame.MainFrame.Container.SectionFrame.SectionContainer.Slider.UIStroke
 					Slider["40"] = Instance.new("UIStroke", Slider["36"])
@@ -3931,7 +3932,7 @@ function Library:Create(options)
 
 						Dropdown:ResizeContainer()
 					end
-					
+
 					function Dropdown:RemoveItem(value)
 						for i, v in (Dropdown["4b"]:GetChildren()) do
 							if v:IsA("Frame") then
@@ -5387,6 +5388,7 @@ function Library:Notify(options)
 		Icon = "rbxassetid://11401835376",
 		Sound = "rbxassetid://6647898215",
 		Duration = 5,
+		Color = ThemeColor.ThemeTrue,
 		Callback = function()
 			return
 		end,
@@ -5422,9 +5424,9 @@ function Library:Notify(options)
 		Notification["87"] = Instance.new("UIGradient", Notification["86"])
 		Notification["87"]["Name"] = [[ThemeColorGradient]]
 		Notification["87"]["Rotation"] = 90
-		Notification["87"]["Color"] = ThemeColor.Theme
+		Notification["87"]["Color"] = Library:CalGradient(options.Color, 47)
 
-		ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["87"]
+		----ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["87"]
 
 		-- StarterGui.Vision Lib v2.NotifFrame.Notif.NotifName
 		Notification["88"] = Instance.new("TextLabel", Notification["84"])
@@ -5446,9 +5448,9 @@ function Library:Notify(options)
 		Notification["89"] = Instance.new("UIGradient", Notification["88"])
 		Notification["89"]["Name"] = [[ThemeColorGradient]]
 		Notification["89"]["Rotation"] = 90
-		Notification["89"]["Color"] = ThemeColor.Theme
+		Notification["89"]["Color"] = Library:CalGradient(options.Color, 47)
 
-		ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["89"]
+		----ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["89"]
 
 		-- StarterGui.Vision Lib v2.NotifFrame.Notif.NotifText
 		Notification["8a"] = Instance.new("TextLabel", Notification["84"])
@@ -5486,9 +5488,9 @@ function Library:Notify(options)
 		Notification["8d"] = Instance.new("UIGradient", Notification["8c"])
 		Notification["8d"]["Name"] = [[ThemeColorGradient]]
 		Notification["8d"]["Rotation"] = 90
-		Notification["8d"]["Color"] = ThemeColor.Theme
+		Notification["8d"]["Color"] = Library:CalGradient(options.Color, 47)
 
-		ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["8d"]
+		----ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["8d"]
 
 		-- StarterGui.Vision Lib v2.NotifFrame.Notif.TimeBarBack.UIGradient
 		Notification["8e"] = Instance.new("UIGradient", Notification["8b"])
@@ -5558,6 +5560,7 @@ function Library:ForceNotify(options)
 		Icon = "rbxassetid://11401835376",
 		Sound = "rbxassetid://6647898215",
 		Duration = 5,
+		Color = ThemeColor.ThemeTrue,
 		Callback = function()
 			return
 		end,
@@ -5593,9 +5596,9 @@ function Library:ForceNotify(options)
 		Notification["87"] = Instance.new("UIGradient", Notification["86"])
 		Notification["87"]["Name"] = [[ThemeColorGradient]]
 		Notification["87"]["Rotation"] = 90
-		Notification["87"]["Color"] = ThemeColor.Theme
+		Notification["87"]["Color"] = Library:CalGradient(options.Color, 47)
 
-		ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["87"]
+		----ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["87"]
 
 		-- StarterGui.Vision Lib v2.NotifFrame.Notif.NotifName
 		Notification["88"] = Instance.new("TextLabel", Notification["84"])
@@ -5617,9 +5620,9 @@ function Library:ForceNotify(options)
 		Notification["89"] = Instance.new("UIGradient", Notification["88"])
 		Notification["89"]["Name"] = [[ThemeColorGradient]]
 		Notification["89"]["Rotation"] = 90
-		Notification["89"]["Color"] = ThemeColor.Theme
+		Notification["89"]["Color"] = Library:CalGradient(options.Color, 47)
 
-		ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["89"]
+		----ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["89"]
 
 		-- StarterGui.Vision Lib v2.NotifFrame.Notif.NotifText
 		Notification["8a"] = Instance.new("TextLabel", Notification["84"])
@@ -5657,9 +5660,9 @@ function Library:ForceNotify(options)
 		Notification["8d"] = Instance.new("UIGradient", Notification["8c"])
 		Notification["8d"]["Name"] = [[ThemeColorGradient]]
 		Notification["8d"]["Rotation"] = 90
-		Notification["8d"]["Color"] = ThemeColor.Theme
+		Notification["8d"]["Color"] = Library:CalGradient(options.Color, 47)
 
-		ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["8d"]
+		----ThemeInstances["Theme"][#ThemeInstances["Theme"] + 1] = Notification["8d"]
 
 		-- StarterGui.Vision Lib v2.NotifFrame.Notif.TimeBarBack.UIGradient
 		Notification["8e"] = Instance.new("UIGradient", Notification["8b"])
