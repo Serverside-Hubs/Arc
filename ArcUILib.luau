@@ -3939,7 +3939,7 @@ function Library:Create(options)
 					function Dropdown:RemoveItem(value)
 						for i, v in (Dropdown["4b"]:GetChildren()) do
 							if v:IsA("Frame") then
-								local Value: ObjectValue? = v:FindFirstChildWhichIsA("ObjectValue")
+								local Value: ValueBase? = v:FindFirstChildWhichIsA("ValueBase")
 								if Value and Value.Value and Value.Value == value then
 									v:Destroy()
 								end
