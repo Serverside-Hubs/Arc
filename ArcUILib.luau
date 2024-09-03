@@ -3829,6 +3829,9 @@ function Library:Create(options)
 							if typeof(value) == "Instance" then
 								DropdownOption["value"] = Instance.new("ObjectValue", DropdownOption["4d"])
 								DropdownOption["value"].Value = value
+							elseif typeof(value) == "string" then
+								DropdownOption["value"] = Instance.new("StringValue", DropdownOption["4d"])
+								DropdownOption["value"].Value = value
 							end
 
 							ThemeInstances["MainTrue"][#ThemeInstances["MainTrue"] + 1] = DropdownOption["50"]
