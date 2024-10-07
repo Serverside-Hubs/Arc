@@ -1651,7 +1651,7 @@ end,[26]=function()
 			end
 		end);
 		ah.AddSignal(n:GetPropertyChangedSignal("Text"), function()
-			h:SetValue(tonumber(n.Text))
+			h:SetValue(tonumber(n.Text) or 0)
 		end)
 		h.OnChanged = function(p, s)
 			h.Changed = s;
